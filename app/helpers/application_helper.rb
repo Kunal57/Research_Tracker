@@ -14,4 +14,8 @@ module ApplicationHelper
   def is_student?
   	Student.all.include?(current_user)
   end
+
+  def is_admin?
+  	Professor.where(is_admin: true).include?(current_user)
+  end
 end
