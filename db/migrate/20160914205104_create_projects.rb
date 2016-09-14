@@ -8,7 +8,7 @@ class CreateProjects < ActiveRecord::Migration
       t.text    :hypothesis, null: false
       t.text    :summary, null: false
       t.text    :conclusion
-      t.integer :time_budget
+      t.integer :time_budget, null: false
 
       t.timestamps null: false
     end
