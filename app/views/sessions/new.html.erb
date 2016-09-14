@@ -1,0 +1,14 @@
+<h1>Welcome to Lab Ratz!</h1>
+
+
+
+<%= form_tag('/login') do %>
+<%= label_tag(:email, "Email:") %>
+<%= text_field_tag(:email) %>
+<%= label_tag(:password, "Password:") %>
+<%= password_field_tag(:password) %>
+<%= submit_tag("Login") %>
+<% end %>
+
+<%= link_to "Register as a Student", new_student_path %>
+<%= link_to "Register as a Professor", new_professor_path %>
