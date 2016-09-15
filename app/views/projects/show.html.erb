@@ -1,0 +1,29 @@
+<h1><%= @project.title %></h1>
+
+<% if is_professor? %>
+	<h3><%= @project.remaining_time %> hours remaining</h3>
+<% else %>
+	<h3><%= @student_total_hours %> hours worked on this project</h3>
+<% end %>
+
+<h3><%= @project.hypothesis %></h3>
+
+
+<p><%= @project.summary %></p>
+<p><%= @project.status %></p>
+
+<% @project.records do |record| %>
+	<%= record.student%>
+	<%= record.observations %>
+	<% if current_user.is_professor? %>
+		<%= record.hours_worked%>
+	<% end %>
+<% end %> 
+
+<%= form_for @record do |f| %>
+  <%= f.label :hours_worked %>
+  <%= f.number_field :hours_worked %><br>
+  <%= f.label :observations %>
+  <%= f.text_field :observations %><br>
+  <%= f.submit %>
+<% end %>

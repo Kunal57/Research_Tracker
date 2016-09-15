@@ -1,0 +1,8 @@
+<h3>Completed Projects:</h3>
+<ul>
+<% @projects.each do |project| %>
+	<% if project.complete? %>
+		<li><%= link_to project, project %></li>
+	<% end %>
+<% end %>
+</ul>
