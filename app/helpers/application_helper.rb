@@ -1,4 +1,6 @@
 module ApplicationHelper
+  # helper_method :current_user, :logged_in?, :is_professor?, :is_student?, :is_admin?
+
 	def logged_in?
     session[:user_id] != nil
   end
