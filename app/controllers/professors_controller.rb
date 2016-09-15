@@ -12,7 +12,7 @@ class ProfessorsController < ApplicationController
   def create
     @professor = Professor.new(professor_params)
     if @professor.save
-      session[:user_id] = @professor.id
+      session[:professor_id] = @professor.id
       redirect_to @professor
     else
       @errors = @professor.errors.full_messages
