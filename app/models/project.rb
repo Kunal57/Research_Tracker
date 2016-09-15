@@ -3,7 +3,12 @@ class Project < ActiveRecord::Base
   has_many :records
   has_many :students, through: :records
 
-  def current? 
+
+  def self.pending_projects
+    Project.where(status: 'pending')
+  end
+
+  def current?
   	self.status == "active"
   end
 
@@ -16,6 +21,7 @@ class Project < ActiveRecord::Base
   	self.records.each do |record|
   		total_worked += record.hours_worked
   	end
-  	self.time_budget - total_worked 
+  	self.time_budget - total_worked
   end
+
 end

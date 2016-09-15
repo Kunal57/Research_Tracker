@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.integer :professor_id, null: false
       t.string  :status, null: false, default: "pending"
-      # project statuses: "pending", "active", "complete"
+      # project statuses: "pending", "active", "complete" # we should add 'rejected' for projects the admin rejects
       t.string  :title, null: false
       t.text    :hypothesis, null: false
       t.text    :summary, null: false

@@ -7,6 +7,11 @@ class Professor < ActiveRecord::Base
 
   has_secure_password
 
+
+  def self.pending_profs
+    Professor.where(is_approved: false)
+  end
+
   def pending_projects
   	self.projects.where(status: "pending")
   end
@@ -21,5 +26,6 @@ class Professor < ActiveRecord::Base
 
 	def rejected_projects
   	self.projects.where(status: "rejected")
-  end  
+  end
+
 end
