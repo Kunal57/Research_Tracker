@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   
   def new
-  	if true #is_professor?
+  	if is_professor?
   		#@professor = current_professor
   		@students = Student.all
   		@project = Project.new
@@ -11,10 +11,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
-  	if true #is_professor?
-	  	new_project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget], professor_id: 1)
+  	if is_professor?
+	  	new_project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget], professor_id: current_user)
 	  	if new_project.save
-	  		p params
 	  		# Create a record for each new array of students.
 	  		i = 1
 	  		while i < params[:students][:ids].length + 1
