@@ -20,3 +20,10 @@
 	<% end %>
 <% end %> 
 
+<%= form_for @record do |f| %>
+  <%= f.label :hours_worked %>
+  <%= f.number_field :hours_worked %><br>
+  <%= f.label :observations %>
+  <%= f.text_field :observations %><br>
+  <%= f.submit %>
+<% end %>
