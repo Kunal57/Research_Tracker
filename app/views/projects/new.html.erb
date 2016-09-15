@@ -1,3 +1,18 @@
 <h1>Propose a New Experiment</h1>
 <h2>Enter the Proposal Information Below</h2>
 
+<%= form_for @project do |f| %>
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br>
+  <%= f.label :hypothesis %>:
+  <%= f.text_field :hypothesis %><br>
+  <%= f.label :summary %>:
+  <%= f.text_field :summary %><br>
+  <%= f.label :time_budget %>:
+  <%= f.number_field :time_budget %><br>
+  <%= f.label :students %>:
+  <% @students.each do |student| %>
+  	<%= form.check_box student.name %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
