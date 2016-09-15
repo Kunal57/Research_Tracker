@@ -12,16 +12,34 @@ Professor.create(name: "Matt Baker", email: "matt@madzcintiztz.com", password: "
 
 Student.create(name: "Duke", email: "duke@duke.com", password: "password")
 
-Project.create(title: "Mad Zcienz", hypothesis: "cool shit will happen", summary: "do experiments, yo", time_budget: 400, professor_id: 2)
 
-Record.create(student_id: 1, project_id: 1)
+10.times do
+  Professor.create!(email: Faker::Internet.email,
+               name: Faker::Name.name,
+               password: "password",
+               is_approved: true)
+end
 
-# Active Project
-Project.create(title: "Why does the sun shine?", hypothesis: "The Sun is a mass of incandescent gas", summary: "a gigantic nuclear furnace", time_budget: 400, professor_id: 2, status: "active")
+Professor.all.each do |professor|
+    professor.projects.create!(professor_id: professor.id,
+                          title: Faker::Hipster.sentence,
+                          hypothesis: Faker::Lorem.sentence,
+                          summary: Faker::Lorem.paragraph(4),
+                          time_budget: rand(100..700),
+                          status: "active")
+end
 
-# Completed Project
-Project.create(title: "SCIENCE!", hypothesis: "it's poetry in motion", summary: "She blinded me, with SCIENCE!", time_budget: 10000, professor_id: 2, status: "complete")
+10.times do
+  Student.create!(email: Faker::Internet.email,
+               name: Faker::Name.name,
+               password: "password")
+end
 
-# Rejected Project
-Project.create(title: "Weird Science", hypothesis: "cool shit will happen", summary: "do experiments, yo", time_budget: 400, professor_id: 2, status: "rejected")
-
+Student.all.each do |student|
+  rand(1..4).times do
+    student.records.create!(student_id: student.id,
+    											project_id: rand(1..10), 
+                          hours_worked: rand(10..50),
+                          observations: Faker::Lorem.paragraph(2, true))
+  end
+end
