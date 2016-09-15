@@ -1,5 +1,5 @@
 <div id="navbar">
-  <%= button_to "Home", projects, method: "get"%>
+  <%= button_to "Projects Page", "/projects", method: "get"%>
   <% if logged_in?
     if is_student? 
       user_type = "Student"
@@ -7,11 +7,10 @@
       user_type = "Professor" 
     end %>
   <%= button_to "#{user_type} Profile", current_user, method: "get" %>
-  <%= button_to "Logout", "/Logout", method: "delete" %>
+  <%= button_to "Logout", "/", method: "delete" %>
   <% else %>
     <%= button_to "Register New Student", new_student, method: "get" %>
     <%= button_to "Register New Professor", new_professor, method: "get" %>
-    <%= button_to "Student Login", "/", method: "get" %>
-    <%= button_to "Professor Login", "/", method: "get" %>
+    <%= button_to "Login", login, method: "get" %>
   <% end %>
 </div>
