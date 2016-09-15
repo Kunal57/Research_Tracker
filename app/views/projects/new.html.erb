@@ -12,7 +12,9 @@
   <%= f.number_field :time_budget %><br>
   <%= f.label :students %>:
   <% @students.each do |student| %>
-  	<%= form.check_box student.name %>
+  	<%= f.label student.name %>:
+  	<%= check_box(student.name, student.id) %>
   <% end %>
+
   <%= f.submit %>
 <% end %>

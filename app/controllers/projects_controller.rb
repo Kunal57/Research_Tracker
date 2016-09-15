@@ -1,8 +1,8 @@
-class ApplicationController < ActionController::Base
+class ProjectsController < ActionController::Base
   
   def new
   	if true #current_professor
-  		@professor = current_professor
+  		#@professor = current_professor
   		@students = Student.all
   		@project = Project.new
   	else
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 	  		p params
 	  		# Create a report for each new array of students.
 	  		# new_report = Report.new()
-	  		redirect_to current_professor
+	  		redirect_to new_project
 	  	else
 	  		#display the error messages.
 	  		@errors = new_project.errors.full_messages
