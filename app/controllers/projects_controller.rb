@@ -1,7 +1,7 @@
 class ProjectsController < ActionController::Base
   
   def new
-  	if true #current_professor
+  	if is_professor?
   		#@professor = current_professor
   		@students = Student.all
   		@project = Project.new
@@ -11,8 +11,9 @@ class ProjectsController < ActionController::Base
   end
 
   def create
-  	if true #current_professor
-	  	new_project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget])
+  	if is_professor?
+	  	new_project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget], professor_id: current_user.id)
+	  	p params
 	  	if new_project.save
 	  		p params
 	  		# Create a report for each new array of students.
