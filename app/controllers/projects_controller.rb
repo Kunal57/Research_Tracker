@@ -15,15 +15,13 @@ class ProjectsController < ApplicationController
 	  	new_project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget], professor_id: current_user.id)
 	  	if new_project.save
 	  		# Create a record for each new array of students.
-	  		i = 1
-	  		while i < params[:students][:ids].length + 1
-	  			if params[:students][:ids][i.to_s] == "1"
-	  				record = Record.new(project_id: new_project.id, student_id: i)
+	  		params[:students][:ids].each do |student_id, checked|
+	  			if checked == "1"
+	  				record = Record.new(project_id: new_project.id, student_id: student_id)
 	  				if !record.save
 	  					@errors = record.errors.full_messages
 	  				end
 	  			end
-	  			i += 1
 	  		end
 	  		# new_report = Report.new()
 	  		redirect_to new_project
