@@ -20,7 +20,7 @@
 	<% end %>
 <% end %> 
 
-<% if is_user? %>
+<% if is_student? %>
 	<%= form_for @record , html: {class: "form-group"} do |f| %>
 	  <%= f.label :hours_worked %>
 	  <%= f.number_field :hours_worked %><br>

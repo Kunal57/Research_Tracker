@@ -9,7 +9,10 @@
 </head>
 <body>
 	<div id=navbar_container>
-		<%= render "shared/navbar" %>
+		<% current_uri = request.env['PATH_INFO'] %>
+		<% unless current_uri == root_path %>
+			<%= render "shared/navbar" %>
+		<% end %> 
 	</div>
 	<div id="page-wrapper">
 		<%= yield %>
