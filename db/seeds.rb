@@ -29,14 +29,14 @@ Professor.all.each do |professor|
                           status: "active")
 end
 
-10.times do
+30.times do
   Student.create!(email: Faker::Internet.email,
                name: Faker::Name.name,
                password: "password")
 end
 
 Student.all.each do |student|
-  rand(1..4).times do
+  rand(1..10).times do
     student.records.create!(student_id: student.id,
     											project_id: rand(1..10), 
                           hours_worked: rand(10..50),
