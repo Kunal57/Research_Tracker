@@ -22,13 +22,22 @@ class ProfessorsController < ApplicationController
 
   def secr1t
     if is_admin?
-      @admin = current_user
+      @admin = Professor.find(session[:professor_id])
       @pending_profs = Professor.pending_profs
-      @pending_projects = Projects.pending_projects
+      @pending_projects = Project.pending_projects
     else
       403
     end
   end
+
+  def profs
+    if is_admin?
+      p params
+      @prof_approved = Professor.find(params[])
+    else
+    end
+  end
+
 
   private
   def professor_params

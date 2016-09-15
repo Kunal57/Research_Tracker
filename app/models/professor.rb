@@ -7,7 +7,7 @@ class Professor < ActiveRecord::Base
 
   has_secure_password
 
-  def pending_profs
+  def self.pending_profs
     Professor.where(is_approved: false)
   end
 end
