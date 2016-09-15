@@ -30,10 +30,10 @@ class ProfessorsController < ApplicationController
     end
   end
 
-  def profs
+  def approve
     if is_admin?
-      p params
-      @prof_approved = Professor.find(params[])
+      @prof_approved = Professor.find(params[:prof_id])
+      @prof_approved.is_approved = true
     else
     end
   end

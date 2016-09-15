@@ -3,7 +3,7 @@
 <ul>
 <% @pending_profs.each do |prof| %>
 <li>Name:<%= prof.name %> Email:<%= prof.email %></li>
-<%= form_tag('/admin/profs') %>
+<%= form_tag("/admin/professors/#{prof.id}") %>
 <span> <%= submit_tag "Approve this Professor" %> </span>
 
 <% end %>
@@ -14,7 +14,7 @@
 <li>Lead Researcher:<%= link_to proj.professor.name, proj.professor %></li>
 <h4>Title: <%=proj.title %></h4>
 <p>Hypothesis: <%= proj.hypothesis %></p>
-<%= form_tag('/admin/projects') %>
+<%= form_tag("/admin/projects/#{proj.id}") %>
 <span> <%= submit_tag "Approve this Project" %> </span>
 
 <% end %>
