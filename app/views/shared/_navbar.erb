@@ -1,5 +1,5 @@
 <div id="navbar">
-  <% if !current_page?(login_path) %>
+  <% if !(current_page?(login_path) || current_page?(post_login_path)) %>
     <% if logged_in? %>
       <% if !current_page?(projects_path) %>
         <%= link_to "Projects Page", projects_path, class: 'nav_link' %>
