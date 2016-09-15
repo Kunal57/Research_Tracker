@@ -5,6 +5,7 @@ class ProfessorsController < ApplicationController
     @pending_projects = @professor.pending_projects
     @active_projects = @professor.active_projects
     @completed_projects = @professor.completed_projects
+    @rejected_projects = @professor.rejected_projects
   end
 
   def new
