@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     if is_student?
       session[:student_id] = nil
     else
-      session[:professor_id]
+      session[:professor_id] = nil
     end
     flash[:notice] = "Logged Out"
     redirect_to '/login'
