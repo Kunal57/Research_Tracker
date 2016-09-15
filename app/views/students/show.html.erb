@@ -6,7 +6,7 @@
 <ul>
 <% @projects.each do |project| %>
 	<% if project.current? %>
-		<li><%= link_to project, project %></li>
+		<li><%= link_to project.title, project %></li>
 	<% end %>
 <% end %>
 </ul>
@@ -15,7 +15,7 @@
 <ul>
 <% @projects.each do |project| %>
 	<% if project.complete? %>
-		<li><%= link_to project, project %></li>
+		<li><%= link_to project.title, project %></li>
 	<% end %>
 <% end %>
 </ul>
