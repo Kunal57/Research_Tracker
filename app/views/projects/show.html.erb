@@ -13,10 +13,10 @@
 
 <h3><%= @project.hypothesis %></h3>
 
-
 <p><%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
+<%= render :"shared/errors" %>
 <% @project.records.each do |record| %>
 	<%= record.student.name%><br>
 	<%= record.observations %><br>
