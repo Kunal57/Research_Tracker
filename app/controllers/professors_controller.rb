@@ -20,6 +20,16 @@ class ProfessorsController < ApplicationController
     end
   end
 
+  def secr1t
+    if is_admin?
+      @admin = current_user
+      @pending_profs = Professor.pending_profs
+      @pending_projects = Projects.pending_projects
+    else
+      403
+    end
+  end
+
   private
   def professor_params
     params.require(:professor).permit(:name, :email, :password)

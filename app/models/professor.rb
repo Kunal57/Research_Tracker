@@ -6,4 +6,8 @@ class Professor < ActiveRecord::Base
   validates :email, { uniqueness: true }
 
   has_secure_password
+
+  def pending_profs
+    Professor.where(is_approved: false)
+  end
 end

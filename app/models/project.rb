@@ -3,4 +3,9 @@ class Project < ActiveRecord::Base
   has_many :records
   has_many :students, through: :records
 
+
+  def pending_projects
+    Project.where(status: 'pending')
+  end
+
 end
