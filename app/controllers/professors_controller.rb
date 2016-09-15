@@ -2,10 +2,19 @@ class ProfessorsController < ApplicationController
 
   def show
     @professor = Professor.find(params[:id])
-    @pending_projects = @professor.pending_projects
-    @active_projects = @professor.active_projects
-    @completed_projects = @professor.completed_projects
-    @rejected_projects = @professor.rejected_projects
+    if current_user.id == @professor.id
+      @pending_projects = @professor.pending_projects
+      @active_projects = @professor.active_projects
+      @completed_projects = @professor.completed_projects
+      @rejected_projects = @professor.rejected_projects
+    else
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to @projects
+      end
+    end
   end
 
   def new
@@ -32,7 +41,12 @@ class ProfessorsController < ApplicationController
         @no_pending = true
       end
     else
-      403
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to projects_path
+      end
     end
   end
 
@@ -42,14 +56,19 @@ class ProfessorsController < ApplicationController
       @prof_approved.update_column(:is_approved, true)
       redirect_to(:back)
     else
-      403
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to @projects
+      end
     end
   end
 
 
   private
   def professor_params
-    params.require(:professor).permit(:name, :email, :password, :is_approved)
+    params.require(:professor).permit(:name, :email, :password)
   end
 
 end

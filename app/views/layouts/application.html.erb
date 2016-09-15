@@ -11,6 +11,7 @@
 	<div id=navbar_container>
 		<%= render "shared/navbar" %>
 	</div>
+  <center><p id='errors'><%= flash[:notice] %></p></center>
 	<div id="page-wrapper">
 		<%= yield %>
 	</div>

@@ -2,16 +2,34 @@ class ProjectsController < ApplicationController
 
 
 	def index
-		@projects = Project.all
+    if logged_in?
+		  @projects = Project.all
+    else
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to root
+      end
+    end
 	end
 
 	def show
 		@record = Record.new
 		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
-		if @student
-			@student_total_hours = @student.hours_per_project(@project.id)
-		end
+    if @project.authorized_viewer?
+  		if @student
+  			@student_total_hours = @student.hours_per_project(@project.id)
+  		end
+    else
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to @projects
+      end
+    end
 	end
 
   def new
@@ -20,7 +38,12 @@ class ProjectsController < ApplicationController
   		@students = Student.all
   		@project = Project.new
   	else
-  		redirect_to "/"
+  		flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to @projects
+      end
   	end
   end
 
@@ -45,9 +68,14 @@ class ProjectsController < ApplicationController
         @students = Student.all
 	  		render 'new'
 	  	end
-	else
-		redirect_to "/"
-	end
+	 else
+		flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+    if request.env["HTTP_REFERER"].present?
+      redirect_to :back
+    else
+      redirect_to @projects
+    end
+	 end
   end
 
   def admin
@@ -60,7 +88,12 @@ class ProjectsController < ApplicationController
       @proj_approved.update_column(:status, 'rejected')
       redirect_to(:back)
     else
-      403
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to @projects
+      end
     end
   end
 

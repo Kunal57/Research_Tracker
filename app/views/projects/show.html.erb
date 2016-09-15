@@ -1,5 +1,7 @@
 <h1><%= @project.title %></h1>
 
+
+
 <% if is_professor? %>
 	<h3><%= @project.remaining_time %> hours remaining</h3>
 <% else %>
@@ -18,7 +20,7 @@
 	<% if is_professor? %>
 		<%= record.hours_worked%> hours worked<br><br>
 	<% end %>
-<% end %> 
+<% end %>
 
 <%= form_for @record , html: {class: "form-group"} do |f| %>
   <%= f.label :hours_worked %>

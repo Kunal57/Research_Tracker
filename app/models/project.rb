@@ -25,4 +25,20 @@ class Project < ActiveRecord::Base
   	self.time_budget - total_worked
   end
 
+  def authorized_viewer?
+    if is_student? && self.current?
+      if self.student_ids.include(current_user.id)
+        true
+      else
+        false
+      end
+    elsif is_professor?
+      if self.professor.id == current_user.id
+        true
+      else
+        false
+    else
+      false
+    end
+
 end

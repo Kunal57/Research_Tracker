@@ -14,6 +14,8 @@
 <li>Lead Researcher:<%= link_to proj.professor.name, proj.professor %></li>
 <h4>Title: <%=proj.title %></h4>
 <p>Hypothesis: <%= proj.hypothesis %></p>
+<p>Budget Requested: <%= proj.time_budget %></p>
+<p>Summary: <%= proj.summary %></p>
 <%= form_tag("/admin/projects/#{proj.id}", method: :put) %>
 <span> <%= submit_tag "Approve this Proposal" %> </span>
 <%= form_tag("/admin/projects/#{proj.id}", method: :put) %>
