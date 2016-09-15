@@ -56,3 +56,5 @@ Student.all.each do |student|
                           observations: Faker::Lorem.paragraph(2, true))
   end
 end
+
+Professor.find(1).projects.delete_all
