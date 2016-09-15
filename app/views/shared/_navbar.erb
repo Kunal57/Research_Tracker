@@ -1,0 +1,21 @@
+<div id="navbar">
+  <form class="nav_link" action="/" method="get">
+    <button type="submit" class="nav_link">Home</button>
+  </form>
+  <% if logged_in_id
+    log = "Logout"
+    route = "post" %>
+  <form class="nav_link" action="/users/<%= logged_in_id %>" method="get">
+    <button type="submit" class="nav_link">Profile</button>
+  </form>
+  <% else
+    log = "Login"
+    route = "get" %>
+  <form class="nav_link" action="/users/new" method="get">
+    <button type="submit" class="nav_link" >Register</button>
+  </form>
+  <% end %>
+  <form class="nav_link" action="/sessions/<%= log.downcase %>" method=<%= route %>>
+    <button type="submit" class="nav_link"><%= log %></button>
+  </form>
+</div>
