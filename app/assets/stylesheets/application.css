@@ -1,15 +1,79 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+h1 {
+	font-family: 'Playfair Display', serif;
+	font-size: 52px;
+	text-align: center;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.form-group{
+    max-width: 500px;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-group input[type="number_field"],
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea,
+.form-group select {
+	 	border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 7px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    color:#8a97a0;
+    margin-bottom: 20px;
+}
+
+.form-group .password {
+ 	border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 7px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    color:#8a97a0;
+    margin-bottom: 20px;
+ }
+
+.form-group input[type="submit"],
+.form-group input[type="button"]
+{
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #31A9B8;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-group input[type="submit"]:hover,
+.form-group input[type="button"]:hover
+{
+    background: gray;
+}
+
+#page-wrapper {
+     width: 900px;
+     margin: 0 auto;
+}
+
+#projects {
+  column-count: 2;
+}
