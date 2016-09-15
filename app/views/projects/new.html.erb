@@ -10,10 +10,10 @@
   <%= f.text_field :summary %><br>
   <%= f.label :time_budget %>:
   <%= f.number_field :time_budget %><br>
-  <%= f.label :students %>:
+  <%= f.label :students %>:<br>
   <% @students.each do |student| %>
   	<%= f.label student.name %>:
-  	<%= check_box(student.name, student.id) %>
+  	<%= check_box(student.name, student.id) %><br>
   <% end %>
 
   <%= f.submit %>
