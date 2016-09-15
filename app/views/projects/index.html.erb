@@ -1,9 +1,13 @@
 <h1>Completed Projects:</h1>
+
+<% if is_professor? %>
+	<%= link_to "New Proposal", controller: 'projects', action: 'new' %>
+<% end %>
 <ul>
 <div id="projects">
 <% @projects.each do |project| %>
 	<% if project.complete? %>
-		<li><%= link_to project, project %></li>
+		<li><%= link_to project.title, project %></li>
 	<% end %>
 <% end %>
 </ul>
