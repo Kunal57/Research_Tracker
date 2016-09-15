@@ -6,8 +6,7 @@
 <ul>
 <% @projects.each do |project| %>
 	<% if project.current? %>
-		<!-- below link will work, but the paths don't exist yet so it is throwing an error -->
-		<!-- <li><%= link_to project, project %></li>-->
+		<li><%= link_to project, project %></li>
 	<% end %>
 <% end %>
 </ul>
@@ -16,8 +15,7 @@
 <ul>
 <% @projects.each do |project| %>
 	<% if project.complete? %>
-		<!-- below link will work, but the paths don't exist yet so it is throwing an error -->
-		<!-- <li><%= link_to project, project %></li>-->
+		<li><%= link_to project, project %></li>
 	<% end %>
 <% end %>
 </ul>
