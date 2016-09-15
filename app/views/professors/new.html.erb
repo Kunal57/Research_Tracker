@@ -1,6 +1,7 @@
 <h1>Register as a Professor </h1>
 
 <%= form_for @professor, html: {class: "form-group"} do |f| %>
+<%= render(partial: '/shared/error_messages', locals: { obj: @professor }) %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :email %>

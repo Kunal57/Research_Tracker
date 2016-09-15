@@ -2,6 +2,7 @@
 <h2>Enter the Proposal Information Below</h2>
 
 <%= form_for @project, html: {class: "form-group"}  do |f| %>
+<%= render(partial: '/shared/error_messages', locals: { obj: @project }) %>
   <%= f.label :title %>:
   <%= f.text_field :title %><br>
   <%= f.label :hypothesis %>:
