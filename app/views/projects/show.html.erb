@@ -2,7 +2,12 @@
 
 <% if is_professor? %>
 	<h3><%= @project.remaining_time %> hours remaining</h3>
-<% else %>
+	<% if @project.remaining_time < 0 %>
+	<div id="errors">
+		<h4>over budget</h4>
+	</div>
+	<% end %>
+<% elsif is_student? %>
 	<h3><%= @student_total_hours %> hours worked on this project</h3>
 <% end %>
 
@@ -17,8 +22,8 @@
 	<%= record.observations %><br>
 	<% if is_professor? %>
 		<%= record.hours_worked%> hours worked<br><br>
-	<% end %>
-<% end %> 
+	<% end %> 
+<% end %>
 
 <% if is_student? %>
 	<%= form_for @record , html: {class: "form-group"} do |f| %>
