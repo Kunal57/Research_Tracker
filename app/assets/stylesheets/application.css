@@ -87,12 +87,12 @@ body {
   font-size: 80%;
 }
 
-#navbar form {
+.nav_link {
     display: inline-block;
     padding-right: 50px;
 }
 
-#navbar button {
+.nav_link {
     /*padding-right: 15px;*/
     background:none!important;
     border:none; 
