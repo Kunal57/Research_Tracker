@@ -6,9 +6,10 @@ class ProjectsController < ApplicationController
 
 	def show
 		@record = Record.new
+		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
-		if is_student?
-			@student_total_hours = current_user.hours_per_project(@project.id)
+		if @student
+			@student_total_hours = @student.hours_per_project(@project.id)			
 		end
 	end
 
