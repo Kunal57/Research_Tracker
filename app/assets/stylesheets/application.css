@@ -81,3 +81,15 @@ body {
 #projects {
   column-count: 2;
 }
+
+#navbar {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 80%;
+}
+
+.nav_link {
+    display: inline-block;
+    padding-right: 50px;
+}
