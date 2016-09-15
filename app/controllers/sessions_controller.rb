@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     else
       session[:professor_id]
     end
-    flash[:notice] => "Logged Out"
+    flash[:notice] = "Logged Out"
     redirect_to '/login'
   end
 end
