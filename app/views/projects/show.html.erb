@@ -1,4 +1,20 @@
-<h1><%= @project.name %></h1>
+<h1><%= @project.title %></h1>
 <h3><%= @project.hypothesis %></h3>
 
+<% if current_user.is_professor? %>
+	<h3> project.remaining_time (define method) </h3>
+<% else %>
+	<h3> student.total_hours_per_project (define method) </h3>
+<% end %>
+
 <p><%= @project.summary %></p>
+<p><%= @project.status %></p>
+
+<% @project.records do |record| %>
+	<%= record.student%>
+	<%= record.observations %>
+	<% if current_user.is_professor? %>
+		<%= record.hours_worked%>
+	<% end %>
+<% end %> 
+

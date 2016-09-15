@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :professors, only: [:show, :new, :create]
   resources :students, only: [:show, :new, :create]
-  resources :projects
+  resources :projects, only: [:new, :index, :create, :show]
 
 
 
