@@ -6,4 +6,20 @@ class Professor < ActiveRecord::Base
   validates :email, { uniqueness: true }
 
   has_secure_password
+
+  def pending_projects
+  	self.projects.where(status: "pending")
+  end
+
+  def active_projects
+  	self.projects.where(status: "active")
+  end
+
+  def completed_projects
+  	self.projects.where(status: "complete")
+  end
+
+	def rejected_projects
+  	self.projects.where(status: "rejected")
+  end  
 end
