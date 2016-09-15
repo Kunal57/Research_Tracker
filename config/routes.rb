@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'sessions#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  delete '/logout' to: 'sessions#delete'
+  delete '/logout', to: 'sessions#delete'
 
   resources :professors, only: [:show, :new, :create]
   resources :students, only: [:show, :new, :create]
