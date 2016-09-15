@@ -17,9 +17,8 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
     @projects = @student.projects
+    @hours = @student.total_hours_worked
   end
-
-
 
   private
   def student_params
