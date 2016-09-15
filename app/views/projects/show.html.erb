@@ -20,10 +20,10 @@
 	<% end %>
 <% end %> 
 
-<%= form_for @record do |f| %>
+<%= form_for @record , html: {class: "form-group"} do |f| %>
   <%= f.label :hours_worked %>
   <%= f.number_field :hours_worked %><br>
   <%= f.label :observations %>
-  <%= f.text_field :observations %><br>
+  <%= f.text_area :observations, cols: 30, rows: 15%><br>
   <%= f.submit %>
 <% end %>
