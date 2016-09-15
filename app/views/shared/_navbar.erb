@@ -1,16 +1,26 @@
 <div id="navbar">
-  <% if logged_in? %>
-    <%= link_to "Projects Page", projects_path, class: 'nav_link' %>
-    <% if is_student? 
-      user_type = "Student"
-    else
-      user_type = "Professor" 
-    end %>
-  <%= link_to "#{user_type} Profile", current_user, class: 'nav_link' %>
-  <%= link_to "Logout", logout_path, method: "delete", class: 'nav_link' %>
-  <% else %>
-    <%= link_to "Register New Student", new_student_path, class: 'nav_link' %>
-    <%= link_to "Register New Professor", new_professor_path, class: 'nav_link' %>
-    <%= link_to "Login", login_path, class: 'nav_link' %>
+  <% if !current_page?(login_path) %>
+    <% if logged_in? %>
+      <% if !current_page?(projects_path) %>
+        <%= link_to "Projects Page", projects_path, class: 'nav_link' %>
+      <% end %>
+      <% if is_student? 
+        user_type = "Student"
+      else
+        user_type = "Professor" 
+      end %>
+    <% if !current_page?(current_user) %>
+      <%= link_to "#{user_type} Profile", current_user, class: 'nav_link' %>
+    <% end %>
+    <%= link_to "Logout", logout_path, method: "delete", class: 'nav_link' %>
+    <% else %>
+      <% if !current_page?(new_student_path) %>
+        <%= link_to "Register New Student", new_student_path, class: 'nav_link' %>
+      <% end %>
+      <% if !current_page?(new_professor_path) %>
+        <%= link_to "Register New Professor", new_professor_path, class: 'nav_link' %>
+      <% end %>
+      <%= link_to "Login", login_path, class: 'nav_link' %>
+    <% end %>
   <% end %>
 </div>

@@ -4,6 +4,12 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    text-align: center;
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 }
@@ -81,6 +87,8 @@ body {
 #projects {
   column-count: 2;
 }
+
+/*NAV BAR CSS*/
 
 #navbar {
   text-align: center;
