@@ -1,18 +1,24 @@
 module ApplicationHelper
 	def logged_in?
-    session[:user_id] != nil
+    current_user != nil
   end
 
   def current_user
-     User.find(session[:user_id])
+    if is_professor?
+      Professor.find(session[:professor_id])
+    elsif is_student?
+      Student.find(session[:student_id])
+    else
+      nil
+    end
   end
 
   def is_professor?
-  	Professor.all.include?(current_user)
+  	session[:professor_id] != nil
   end
 
   def is_student?
-  	Student.all.include?(current_user)
+    session[:student_id] != nil
   end
 
   def is_admin?
