@@ -16,7 +16,7 @@
 <p><%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
-<%= render :"shared/errors" %>
+<%= render(partial: '/shared/error_messages', locals: { obj: @record }) %>
 <% @project.records.each do |record| %>
 	<%= record.student.name%><br>
 	<%= record.observations %><br>
