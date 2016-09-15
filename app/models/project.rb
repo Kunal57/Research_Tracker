@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   has_many :records
   has_many :students, through: :records
 
+  validates_presence_of :title, :hypothesis, :summary, :time_budget
 
   def self.pending_projects
     Project.where(status: 'pending')
