@@ -1,5 +1,19 @@
 class ProjectsController < ApplicationController
 
+
+	def index
+		@projects = Project.all
+	end
+
+	def show
+		@record = Record.new
+		@student = Student.find_by(id: session[:student_id])
+		@project = Project.find(params[:id])
+		if @student
+			@student_total_hours = @student.hours_per_project(@project.id)
+		end
+	end
+
   def new
   	if is_professor?
   		#@professor = current_professor

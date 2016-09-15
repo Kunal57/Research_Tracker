@@ -1,13 +1,13 @@
 <h1>Propose a New Experiment</h1>
 <h2>Enter the Proposal Information Below</h2>
 
-<%= form_for @project do |f| %>
+<%= form_for @project, html: {class: "form-group"}  do |f| %>
   <%= f.label :title %>:
   <%= f.text_field :title %><br>
-  <%= f.label :summary %>:
-  <%= f.text_field :summary %><br>
   <%= f.label :hypothesis %>:
-  <%= f.text_field :hypothesis %><br>
+  <%= f.text_area :hypothesis %><br>
+  <%= f.label :summary %>:
+  <%= f.text_area :summary, cols: 30, rows: 15%><br>
   <%= f.label :time_budget %>:
   <%= f.number_field :time_budget %><br>
   <%= f.label :students %>:<br>

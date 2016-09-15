@@ -11,11 +11,16 @@ Rails.application.routes.draw do
   resources :professors, only: [:show, :new, :create]
   resources :students, only: [:show, :new, :create]
 
+
   get '/admin/secr1t', to: 'professors#secr1t'
 
   put '/admin/professors/:prof_id', to: 'professors#approve'
 
   put '/admin/projects/:project_id', to: 'projects#admin'
+
+
+  resources :projects, only: [:new, :index, :create, :show]
+  resources :records, only: [:new, :create]
 
 
 
@@ -30,7 +35,6 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :projects
 
   # Example resource route with options:
   #   resources :products do

@@ -1,11 +1,11 @@
 <h1>Register as a Student </h1>
 
-<%= form_for @student do |f| %>
+<%= form_for @student, html: {class: "form-group"} do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :email %>
   <%= f.text_field :email %><br>
   <%= f.label :password %>
-  <%= f.password_field :password %><br>
+  <%= f.password_field :password, class: 'form-group password'%><br>
   <%= f.submit %>
 <% end %>
