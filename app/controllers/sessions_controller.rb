@@ -19,4 +19,14 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+
+  def destroy
+    if is_student?
+      session[:student_id] = nil
+    else
+      session[:professor_id]
+    end
+    flash[:notice] => "Logged Out"
+    redirect_to '/login'
+  end
 end
