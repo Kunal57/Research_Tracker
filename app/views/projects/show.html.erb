@@ -10,13 +10,13 @@
 
 
 <p><%= @project.summary %></p>
-<p><%= @project.status %></p>
+<p>Status: <%= @project.status %></p>
 
-<% @project.records do |record| %>
-	<%= record.student%>
-	<%= record.observations %>
-	<% if current_user.is_professor? %>
-		<%= record.hours_worked%>
+<% @project.records.each do |record| %>
+	<%= record.student.name%><br>
+	<%= record.observations %><br>
+	<% if is_professor? %>
+		<%= record.hours_worked%> hours worked<br><br>
 	<% end %>
 <% end %> 
 
