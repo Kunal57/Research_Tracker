@@ -14,6 +14,11 @@ describe StudentsController do
       expect(assigns(:student)).to eq(student)
     end
 
+    it "assigns the total hours worked as @hours" do
+      get :show, { id: student.id }
+      expect(assigns(:hours)).to eq(student.total_hours_worked)
+    end
+
     it "renders the :show template" do
       get :show, { id: student.id }
       expect(response).to render_template(:show)
