@@ -24,7 +24,7 @@ Professor.all.each do |professor|
     professor.projects.create!(professor_id: professor.id,
                           title: Faker::Hipster.sentence,
                           hypothesis: Faker::Lorem.sentence,
-                          summary: Faker::Lorem.paragraph(4),
+                          summary: Faker::Lorem.paragraph(20),
                           time_budget: rand(100..700),
                           status: "active")
 end
