@@ -1,14 +1,16 @@
 class ProjectsController < ApplicationController
 
+
 	def index
-		@projects = Project.all 
-	end 
+		@projects = Project.all
+	end
 
 	def show
 		@record = Record.new
+		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
-		if is_student?
-			@student_total_hours = current_user.hours_per_project(@project.id)
+		if @student
+			@student_total_hours = @student.hours_per_project(@project.id)
 		end
 	end
 
@@ -44,6 +46,20 @@ class ProjectsController < ApplicationController
 	else
 		redirect_to "/"
 	end
+  end
+
+  def admin
+    if is_admin? && params[:commit] == 'Approve this Proposal'
+      @proj_approved = Project.find(params[:project_id])
+      @proj_approved.update_column(:status, 'active')
+      redirect_to(:back)
+    elsif is_admin? && params[:commit] == 'Reject this Proposal'
+      @proj_approved = Project.find(params[:project_id])
+      @proj_approved.update_column(:status, 'rejected')
+      redirect_to(:back)
+    else
+      403
+    end
   end
 
 end

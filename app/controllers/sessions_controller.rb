@@ -20,10 +20,14 @@ class SessionsController < ApplicationController
     end
   end
 
-  def delete
-    session.delete(:student_id)
-    session.delete(:professor_id)
-    redirect_to login_path
+  def destroy
+    if is_student?
+      session[:student_id] = nil
+    else
+      session[:professor_id] = nil
+    end
+    flash[:notice] = "Logged Out"
+    redirect_to '/login'
   end
 
 end

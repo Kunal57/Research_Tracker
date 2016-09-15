@@ -1,6 +1,9 @@
 <!-- Prof Prof  -  Professor Profile Page -->
 
 <h1><%=@professor.name%></h1>
+<% if is_admin? %>
+  <%= link_to "Admin Account Management",  '/admin/secr1t' %>
+<% end %>
 
 
 <% if @pending_projects.any? %>
