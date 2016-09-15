@@ -16,6 +16,6 @@ class Project < ActiveRecord::Base
   	self.records.each do |record|
   		total_worked += record.hours_worked
   	end
-  	self.budget - total_worked 
+  	self.time_budget - total_worked 
   end
 end
