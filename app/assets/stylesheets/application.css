@@ -91,14 +91,3 @@ body {
     display: inline-block;
     padding-right: 50px;
 }
-
-.nav_link {
-    /*padding-right: 15px;*/
-    background:none!important;
-    border:none; 
-    padding:0!important;
-    font: inherit;
-    /*border is optional*/
-    border-bottom:1px solid #444; 
-    cursor: pointer;
-}
