@@ -1,11 +1,13 @@
 <h1><%= @project.title %></h1>
+
+<% if is_professor? %>
+	<h3><%= @project.remaining_time %> hours remaining</h3>
+<% else %>
+	<h3><%= @student_total_hours %> hours worked on this project</h3>
+<% end %>
+
 <h3><%= @project.hypothesis %></h3>
 
-<% if current_user.is_professor? %>
-	<h3> project.remaining_time (define method) </h3>
-<% else %>
-	<h3> student.total_hours_per_project (define method) </h3>
-<% end %>
 
 <p><%= @project.summary %></p>
 <p><%= @project.status %></p>
