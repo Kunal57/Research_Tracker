@@ -2,7 +2,9 @@ class ProfessorsController < ApplicationController
 
   def show
     @professor = Professor.find(params[:id])
-    @projects = @professor.projects
+    @pending_projects = @professor.pending_projects
+    @active_projects = @professor.active_projects
+    @completed_projects = @professor.completed_projects
   end
 
   def new
