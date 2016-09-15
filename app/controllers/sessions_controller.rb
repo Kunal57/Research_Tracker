@@ -20,4 +20,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def delete
+    session.delete(:student_id)
+    session.delete(:professor_id)
+    redirect_to login
+  end
+
 end
