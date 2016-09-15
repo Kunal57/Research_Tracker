@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  
+
   def new
   	if is_professor?
   		#@professor = current_professor
@@ -32,6 +32,20 @@ class ProjectsController < ApplicationController
 	else
 		redirect_to "/"
 	end
+  end
+
+  def admin
+    if is_admin? && params[:commit] == 'Approve this Proposal'
+      @proj_approved = Project.find(params[:project_id])
+      @proj_approved.update_column(:status, 'active')
+      redirect_to(:back)
+    elsif is_admin? && params[:commit] == 'Reject this Proposal'
+      @proj_approved = Project.find(params[:project_id])
+      @proj_approved.update_column(:status, 'rejected')
+      redirect_to(:back)
+    else
+      403
+    end
   end
 
 end

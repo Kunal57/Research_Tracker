@@ -15,7 +15,13 @@
 <h4>Title: <%=proj.title %></h4>
 <p>Hypothesis: <%= proj.hypothesis %></p>
 <%= form_tag("/admin/projects/#{proj.id}", method: :put) %>
-<span> <%= submit_tag "Approve this Project" %> </span>
+<span> <%= submit_tag "Approve this Proposal" %> </span>
+<%= form_tag("/admin/projects/#{proj.id}", method: :put) %>
+<span> <%= submit_tag "Reject this Proposal" %> </span>
 
 <% end %>
 </ul>
+
+<% if @no_pending %>
+<h3>Congratulations there are no pending admin tasks!</h3>
+<% end %>

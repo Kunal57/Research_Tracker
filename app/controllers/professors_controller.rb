@@ -28,6 +28,9 @@ class ProfessorsController < ApplicationController
       @admin = Professor.find(session[:professor_id])
       @pending_profs = Professor.pending_profs
       @pending_projects = Project.pending_projects
+      if @pending_profs.length == 0 && @pending_projects.length == 0
+        @no_pending = true
+      end
     else
       403
     end
