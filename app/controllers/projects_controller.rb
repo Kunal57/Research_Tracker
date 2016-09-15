@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
 
   def create
   	if is_professor?
-	  	new_project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget], professor_id: current_user)
+	  	new_project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget], professor_id: current_user.id)
 	  	if new_project.save
 	  		# Create a record for each new array of students.
 	  		i = 1
