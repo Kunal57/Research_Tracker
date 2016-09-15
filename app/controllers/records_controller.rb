@@ -1,13 +1,9 @@
-class RecordsController < ActionController::Base
+class RecordsController < ApplicationController
 
 	def create
 		#Create the new record.
-		p "----------------------------------------------------"
-		p params
-		record = Record.new(params.permit(:hours_worked, :observations, :project_id))
+		record = Record.new(params.require(:record).permit(:hours_worked, :observations, :project_id))
 		record.student_id = current_user.id
-		p record
-		p "----------------------------------------------------"
 		if record.save
 			@errors = record.errors.full_messages
 		end
