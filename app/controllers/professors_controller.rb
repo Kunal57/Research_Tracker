@@ -33,15 +33,17 @@ class ProfessorsController < ApplicationController
   def approve
     if is_admin?
       @prof_approved = Professor.find(params[:prof_id])
-      @prof_approved.is_approved = true
+      @prof_approved.update_column(:is_approved, true)
+      redirect_to(:back)
     else
+      403
     end
   end
 
 
   private
   def professor_params
-    params.require(:professor).permit(:name, :email, :password)
+    params.require(:professor).permit(:name, :email, :password, :is_approved)
   end
 
 end

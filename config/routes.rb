@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   get '/admin/secr1t', to: 'professors#secr1t'
 
-  post '/admin/professors/:prof_id', to: 'professors#approve'
+  put '/admin/professors/:prof_id', to: 'professors#approve'
 
-  post '/admin/projects/:project_id', to: 'projects#admin'
+  put '/admin/projects/:project_id', to: 'projects#admin'
 
 
 
