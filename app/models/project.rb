@@ -8,4 +8,12 @@ class Project < ActiveRecord::Base
     Project.where(status: 'pending')
   end
 
+  def current?
+  	self.status == "active"
+  end
+
+  def complete?
+  	self.status == "complete"
+  end
+
 end

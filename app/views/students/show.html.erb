@@ -1,1 +1,24 @@
 <h1><%= @student.name %></h1>
+
+<h3>Total Hours Worked: <%= @hours %></h3>
+
+<h3>Current Projects:</h3>
+<ul>
+<% @projects.each do |project| %>
+	<% if project.current? %>
+		<!-- below link will work, but the paths don't exist yet so it is throwing an error -->
+		<!-- <li><%= link_to project, project %></li>-->
+	<% end %>
+<% end %>
+</ul>
+
+<h3>Completed Projects:</h3>
+<ul>
+<% @projects.each do |project| %>
+	<% if project.complete? %>
+		<!-- below link will work, but the paths don't exist yet so it is throwing an error -->
+		<!-- <li><%= link_to project, project %></li>-->
+	<% end %>
+<% end %>
+</ul>
+
