@@ -1,5 +1,43 @@
+<!-- Prof Prof  -  Professor Profile Page -->
+
 <h1><%=@professor.name%></h1>
 <% if is_admin? %>
   <%= link_to "Admin Account Management",  '/admin/secr1t' %>
 <% end %>
 
+
+<% if @pending_projects.any? %>
+	<h2>Proposals</h2>
+	<ul>
+		<% @pending_projects.each do |pending_project| %>
+			<li><p><%= link_to "#{pending_project.title}", project_path(pending_project) %> - <%= pending_project.time_budget %> hours</p></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @active_projects.any? %>
+	<h2>Active Projects</h2>
+	<ul>
+		<% @active_projects.each do |active_project| %>
+			<li><p><%= link_to "#{active_project.title}", project_path(active_project) %> - <%= active_project.time_budget %> hours</p></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @completed_projects.any? %>
+	<h2>Completed Projects</h2>
+	<ul>
+		<% @completed_projects.each do |completed_project| %>
+			<li><p><%= link_to "#{completed_project.title}", project_path(completed_project) %></p></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @rejected_projects.any? %>
+	<h2>Rejected Proposals</h2>
+	<ul>
+		<% @rejected_projects.each do |rejected_project| %>
+			<li><p><%= link_to "#{rejected_project.title}", project_path(rejected_project) %></p></li>
+		<% end %>
+	</ul>
+<% end %>

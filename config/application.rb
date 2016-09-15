@@ -21,7 +21,7 @@ module ResearchTracker
     # config.i18n.default_locale = :de
 
     # fix testing warning about web console gem
-    config.web_console.development_only = false
+    # config.web_console.development_only = false
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
