@@ -1,12 +1,19 @@
 <h1><%= @project.title %></h1>
 
+
+
 <% if is_professor? %>
 	<h3><%= @project.remaining_time %> hours remaining</h3>
+	<% if current_user.id == @project.professor_id && @project.status == "active" %>
+		<%= button_to "Mark As Completed", complete_project_path(@project), method: :put %>
+	<% end %>
 	<% if @project.remaining_time < 0 %>
 	<div id="errors">
 		<h4>over budget</h4>
 	</div>
 	<% end %>
+<% elsif current_user.id == @project.professor_id && @project.status == "pending" %>
+			<p><%= link_to "Edit", edit_project_path(@project) %> - <%= link_to 'Delete',  @project,  method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% elsif is_student? %>
 	<h3><%= @student_total_hours %> hours worked on this project</h3>
 <% end %>
@@ -30,7 +37,9 @@
 </div>
 
 <% if is_student? %>
-	<%= form_for @record , html: {class: "form-group"}, remote: true do |f| %>
+<h2>Track your Progress</h2>
+<center><p id='errors'><%= flash[:notice] %></p></center>
+	<%= form_for @record , html: {class: "record"}, remote: true do |f| %>
 	  <%= f.hidden_field :project_id, value: @project.id %>
 	  <%= f.label :hours_worked %>
 	  <%= f.number_field :hours_worked %><br>
@@ -39,3 +48,17 @@
 	  <%= f.submit %>
 	<% end %>
 <% end %>
+
+<h2>Recent Student Logs</h2>
+
+<% @project.records.each do |record| %>
+<div class=records>
+	<%= record.student.name%><br>
+	<%= record.observations %><br>
+	<% if is_professor? %>
+		<%= record.hours_worked%> hours worked<br><br>
+	<% end %> 
+</div>
+<% end %>
+
+
