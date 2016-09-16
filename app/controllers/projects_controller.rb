@@ -63,7 +63,8 @@ class ProjectsController < ApplicationController
   	if is_professor?
   		@project = Project.find(params[:id])
   		@project.update_attributes(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget])
-  		@project.records.destroy
+  		@records = @project.records
+      @records.destroy_all
   		# Create a record for each new array of students.
 	  		params[:students][:ids].each do |student_id, checked|
 	  			if checked == "1"
@@ -78,13 +79,13 @@ class ProjectsController < ApplicationController
   	end
   end
 
-  def delete
+  def destroy
   	 if is_professor?
   		@project = Project.find(params[:id])
   		@records = @project.records
   		@project.destroy
   		@records.destroy
-  		redirect_to "/"
+  		redirect_to current_user
   	else
   		redirect_to "/"
   	end
