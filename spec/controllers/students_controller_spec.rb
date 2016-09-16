@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe StudentsController do
-  let!(:student) { Student.create!(name: "fun student", email: "me@me.com", password: "passwordz") }
+  before(:each) { @request.session[:student_id] = 1 }
+  let!(:student) { Student.create!(id: 1, name: "fun student", email: "me@me.com", password: "passwordz") }
 
   describe "GET #show" do
     it "responds with status code 200" do

@@ -16,8 +16,17 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    @projects = @student.projects
-    @hours = @student.total_hours_worked
+    if current_user.id == @student.id
+      @projects = @student.projects
+      @hours = @student.total_hours_worked
+    else
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to @projects
+      end
+    end
   end
 
   private
