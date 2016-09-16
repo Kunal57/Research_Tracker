@@ -25,7 +25,8 @@ class ProjectsController < ApplicationController
 
   def create
   	if is_professor?
-	  	@project = Project.new(params.require(:project).permit(:title, :hypothesis, :summary, :time_budget))
+  		restricted_params = restrict(params)
+	  	@project = Project.new(restricted_params)
 	  	@project.professor_id = current_user.id
 	  	if @project.save
 	  		# Create a record for each new array of students.
@@ -62,6 +63,12 @@ class ProjectsController < ApplicationController
     else
       403
     end
+  end
+
+  private
+
+  def restrict(params)
+  	params.require(:project).permit(:title, :hypothesis, :summary, :time_budget)
   end
 
 end
