@@ -26,6 +26,8 @@ class Student < ActiveRecord::Base
   end
 
   def working_on(project)
-    project.students.include?(self)
+    zero_records = project.records.where(hours_worked: 0)
+
+    zero_records.where(student_id: self.id).any?
   end
 end
