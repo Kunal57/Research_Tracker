@@ -23,10 +23,12 @@
 <p><%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
+<%= render(partial: '/shared/error_messages', locals: { obj: @record }) %>
+
 <% if is_student? %>
 <h2>Track your Progress</h2>
 <center><p id='errors'><%= flash[:notice] %></p></center>
-	<%= form_for @record , html: {class: "record"} do |f| %>
+	<%= form_for @record , html: {class: "record"}, remote: true do |f| %>
 	  <%= f.hidden_field :project_id, value: @project.id %>
 	  <%= f.label :hours_worked %>
 	  <%= f.number_field :hours_worked %><br>
@@ -38,14 +40,16 @@
 
 <h2>Recent Student Logs</h2>
 
-<% @project.records.each do |record| %>
-<div class=records>
-	<%= record.student.name%><br>
-	<%= record.observations %><br>
-	<% if is_professor? %>
-		<%= record.hours_worked%> hours worked<br><br>
-	<% end %> 
+<div id="list-of-records">
+	<% @project.records.each do |record| %>
+	<div class=records>
+		<%= record.student.name%><br>
+		<%= record.observations %><br>
+		<% if is_professor? %>
+			<%= record.hours_worked%> hours worked<br><br>
+		<% end %> 
+	</div>
+	<% end %>
 </div>
-<% end %>
 
 
