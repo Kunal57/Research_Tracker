@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   put '/admin/professors/:prof_id', to: 'professors#approve'
   put '/admin/projects/:project_id', to: 'projects#admin'
 
-  put '/projects/:id/complete', to: 'projects#complete'
+  put '/projects/:id/complete', to: 'projects#complete', as: :complete_project
 
   resources :projects, only: [:new, :index, :create, :show]
   resources :records, only: [:new, :create]

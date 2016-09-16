@@ -67,7 +67,7 @@ class ProjectsController < ApplicationController
 
   def complete
   	project = Project.find(params[:id])
-  	project.status = "completed"
+  	project.update_attributes(status: "complete")
   	redirect_to project
   end
 
