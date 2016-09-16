@@ -14,7 +14,6 @@
 	<% end %>
 <% elsif current_user.id == @project.professor_id && @project.status == "pending" %>
 			<p><%= link_to "Edit", edit_project_path(@project) %> - <%= link_to 'Delete',  @project,  method: :delete, data: { confirm: 'Are you sure?' } %></p>
-<% end %>
 <% elsif is_student? %>
 	<h3><%= @student_total_hours %> hours worked on this project</h3>
 <% end %>
