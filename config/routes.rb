@@ -6,19 +6,18 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'sessions#new'
   get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
+  post '/login', to: 'sessions#create', as: :post_login
   delete '/logout', to: 'sessions#destroy'
 
   resources :professors, only: [:show, :new, :create]
   resources :students, only: [:show, :new, :create]
 
-
   get '/admin/secr1t', to: 'professors#secr1t'
 
   put '/admin/professors/:prof_id', to: 'professors#approve'
-
   put '/admin/projects/:project_id', to: 'projects#admin'
 
+  put '/projects/:id/complete', to: 'projects#complete', as: :complete_project
 
   resources :projects
 

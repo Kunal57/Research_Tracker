@@ -16,8 +16,8 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    @projects = @student.projects
     @hours = @student.total_hours_worked
+    @student_unique_projects = @student.unique_projects
   end
 
   private

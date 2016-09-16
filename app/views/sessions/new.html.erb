@@ -1,9 +1,9 @@
-<h1>Welcome to Lab Ratz!</h1>
+<h1>Welcome to Lab Ratz! </h1>
 <center>
+<img src="http://vignette3.wikia.nocookie.net/lab-rats/images/0/09/Lab_Rats_Season_3_Image_copy.jpg/revision/latest?cb=20140731141257" alt="Lab" />
 <p>Please login or register to continue</p>
-</center>
 
-<center><p style="color: red;"><%= flash[:notice] %></p></center>
+<p id='errors'><%= flash[:notice] %></p>
 
 <%= form_tag('/login', class: "form-group") do %>
 <%= label_tag(:email, "Email:") %>
