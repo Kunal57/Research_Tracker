@@ -38,3 +38,8 @@
 	<% end %>
 <% end %>
 
+
+<% if @project.status == "pending" %>
+			<p><%= link_to "Edit", edit_project_path(@project) %> - <%= link_to 'Delete',  @project,  method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<% end %>
+

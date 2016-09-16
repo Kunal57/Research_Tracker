@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
     end
 	end
@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
   	end
   end
@@ -74,9 +74,67 @@ class ProjectsController < ApplicationController
     if request.env["HTTP_REFERER"].present?
       redirect_to :back
     else
-      redirect_to @projects
+      redirect_to projects_path
     end
 	 end
+  end
+
+  def edit
+    if @project.professor.id == current_user.id
+			@students = Student.all
+			@project = Project.find(params[:id])
+		else
+			flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to projects_path
+      end
+		end
+  end
+
+  def update
+  		@project = Project.find(params[:id])
+    if @project.professor.id == current_user.id
+  		@project.update_attributes(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget])
+  		@records = @project.records
+      @records.destroy_all
+  		# Create a record for each new array of students.
+	  		params[:students][:ids].each do |student_id, checked|
+	  			if checked == "1"
+	  				@record = Record.new(project_id: @project.id, student_id: student_id)
+	  				if !@record.save
+              @students = Student.all
+	  					render 'new'
+	  				end
+	  			end
+	  		end
+	  	redirect_to @project
+    else
+      flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to projects_path
+      end
+  	end
+  end
+
+  def destroy
+  		@project = Project.find(params[:id])
+    if @project.professor.id == current_user.id
+  		@records = @project.records
+  		@project.destroy
+  		@records.destroy
+  		redirect_to current_user
+  	else
+  		flash[:access] = "Unauthorized access, please contact your administrator if you believe this error is incorrect."
+      if request.env["HTTP_REFERER"].present?
+        redirect_to :back
+      else
+        redirect_to projects_path
+      end
+  	end
   end
 
   def admin
@@ -93,7 +151,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
     end
   end
