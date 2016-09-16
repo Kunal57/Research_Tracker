@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Professor.create(name: "admin", email: "admin@admin.com", password: "password", is_approved: true, is_admin: true)
+Professor.create(name: "Admin Dashboard", email: "admin@admin.com", password: "password", is_approved: true, is_admin: true)
 
 Professor.create(name: "Matt Baker", email: "matt@madzcintiztz.com", password: "password")
 
@@ -49,9 +49,15 @@ end
 end
 
 Student.all.each do |student|
+  student.records.create!(student_id: student.id,
+                          project_id: rand(1..10), 
+                          hours_worked: 0)
+end
+
+Student.all.each do |student|
   rand(1..10).times do
     student.records.create!(student_id: student.id,
-    											project_id: rand(1..10), 
+                          project_id: rand(1..10), 
                           hours_worked: rand(10..50),
                           observations: Faker::Lorem.paragraph(2, true))
   end

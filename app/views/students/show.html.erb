@@ -4,9 +4,10 @@
 
 <h3>Total Hours Worked: <%= @hours %></h3>
 
+<% if @student_unique_projects %>
 <h3>Current Projects:</h3>
 <ul>
-<% @projects.each do |project| %>
+<% @student_unique_projects.each do |project| %>
 	<% if project.current? %>
 		<li><%= link_to project.title, project %></li>
 	<% end %>
@@ -15,10 +16,11 @@
 
 <h3>Completed Projects:</h3>
 <ul>
-<% @projects.each do |project| %>
+<% @student_unique_projects.each do |project| %>
 	<% if project.complete? %>
 		<li><%= link_to project.title, project %></li>
 	<% end %>
 <% end %>
 </ul>
+<% end %>
 
