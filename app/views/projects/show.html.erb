@@ -18,7 +18,6 @@
 <p><%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
-<%= render(partial: '/shared/error_messages', locals: { obj: @record }) %>
 <% @project.records.each do |record| %>
 	<%= record.student.name%><br>
 	<%= record.observations %><br>
@@ -28,6 +27,7 @@
 <% end %>
 
 <% if is_student? %>
+<center><p id='errors'><%= flash[:notice] %></p></center>
 	<%= form_for @record , html: {class: "form-group"} do |f| %>
 	  <%= f.hidden_field :project_id, value: @project.id %>
 	  <%= f.label :hours_worked %>

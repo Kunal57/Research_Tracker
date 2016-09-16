@@ -8,16 +8,16 @@ class Student < ActiveRecord::Base
   has_secure_password
 
   def total_hours_worked
-  	sum = 0 
+  	sum = 0
   	self.records.each do |record|
   		sum += record.hours_worked
   	end
-  	sum 
+  	sum
   end
 
   def hours_per_project(project_id)
     records = Record.where(project_id: project_id, student_id: self.id)
-    sum = 0 
+    sum = 0
     records.each do |record|
       sum += record.hours_worked
     end
