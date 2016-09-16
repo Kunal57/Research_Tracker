@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    if current_user.id = @student.id
+    if current_user.id == @student.id
       @projects = @student.projects
       @hours = @student.total_hours_worked
     else
