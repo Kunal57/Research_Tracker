@@ -4,7 +4,7 @@
 <p>Please login or register to continue</p>
 
 <p id='errors'><%= flash[:notice] %></p>
-
+</center>
 <%= form_tag('/login', class: "form-group") do %>
 <%= label_tag(:email, "Email:") %>
 <%= text_field_tag(:email) %>
