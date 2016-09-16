@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to root
+        redirect_to root_path
       end
     end
 	end
