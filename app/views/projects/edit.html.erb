@@ -1,0 +1,21 @@
+<h1>Edit a Experiment</h1>
+<h2>Update the Proposal Information Below</h2>
+
+<%= form_for @project, :html => {:class => "form-group"}, :url => {:action => 'update', :id => @project.id} do |f| %>
+<%= render(partial: '/shared/error_messages', locals: { obj: @project }) %>
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br>
+  <%= f.label :hypothesis %>:
+  <%= f.text_area :hypothesis %><br>
+  <%= f.label :summary %>:
+  <%= f.text_area :summary, cols: 30, rows: 15%><br>
+  <%= f.label :time_budget %>:
+  <%= f.number_field :time_budget %><br>
+  <%= f.label :students %>:<br>
+  <% @students.each do |student| %>
+    <%= check_box('students[ids]', student.id, {checked: student.working_on(@project)}) %>
+    - <%= f.label student.name %><br>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
