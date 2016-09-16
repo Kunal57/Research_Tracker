@@ -4,6 +4,9 @@
 
 <% if is_professor? %>
 	<h3><%= @project.remaining_time %> hours remaining</h3>
+	<% if current_user.id == @project.professor_id && @project.status == "active" %>
+		<%= button_to "Mark As Completed", complete_project_path(@project), method: :put %>
+	<% end %>
 	<% if @project.remaining_time < 0 %>
 	<div id="errors">
 		<h4>over budget</h4>
