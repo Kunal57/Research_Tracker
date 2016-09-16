@@ -10,7 +10,7 @@
 	<h2>Proposals</h2>
 	<ul>
 		<% @pending_projects.each do |pending_project| %>
-			<li><p><%= link_to "#{pending_project.title}", project_path(pending_project) %> - <%= pending_project.time_budget %> hours</p></li>
+			<li><p><%= link_to "#{pending_project.title}", project_path(pending_project) %> - <%= pending_project.time_budget %> hours - <%= link_to "Edit", edit_project_path(pending_project) %> - <%= link_to 'Delete',  pending_project,  method: :delete, data: { confirm: 'Are you sure?' } %></p></li>
 		<% end %>
 	</ul>
 <% end %>

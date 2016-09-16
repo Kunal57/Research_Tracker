@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   put '/admin/projects/:project_id', to: 'projects#admin'
 
 
-  resources :projects, only: [:new, :index, :create, :show]
+  resources :projects
   resources :records, only: [:new, :create]
 
 

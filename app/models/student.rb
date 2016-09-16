@@ -23,4 +23,8 @@ class Student < ActiveRecord::Base
     end
     sum
   end
+
+  def working_on(project)
+    project.students.include?(self)
+  end
 end
