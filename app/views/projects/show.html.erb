@@ -24,17 +24,6 @@
 <p>Status: <%= @project.status %></p>
 
 <%= render(partial: '/shared/error_messages', locals: { obj: @record }) %>
-<div id="list-of-records">
-	<% @project.records.each do |record| %>
-		<div class="record-info">
-			<p><%= record.student.name%></p>
-			<p><%= record.observations %></p>
-			<% if is_professor? %>
-				<p><%= record.hours_worked%> hours worked</p><br>
-			<% end %> 
-		</div>
-	<% end %>
-</div>
 
 <% if is_student? %>
 <h2>Track your Progress</h2>
@@ -51,14 +40,16 @@
 
 <h2>Recent Student Logs</h2>
 
-<% @project.records.each do |record| %>
-<div class=records>
-	<%= record.student.name%><br>
-	<%= record.observations %><br>
-	<% if is_professor? %>
-		<%= record.hours_worked%> hours worked<br><br>
-	<% end %> 
+<div id="list-of-records">
+	<% @project.records.each do |record| %>
+	<div class=records>
+		<%= record.student.name%><br>
+		<%= record.observations %><br>
+		<% if is_professor? %>
+			<%= record.hours_worked%> hours worked<br><br>
+		<% end %> 
+	</div>
+	<% end %>
 </div>
-<% end %>
 
 
