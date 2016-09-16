@@ -2,6 +2,7 @@
 
 <% if is_professor? %>
 	<h3><%= @project.remaining_time %> hours remaining</h3>
+	<%= button_to "Mark As Completed", action: "/projects/#{@project.id}/complete", method: "put" %>
 	<% if @project.remaining_time < 0 %>
 	<div id="errors">
 		<h4>over budget</h4>
