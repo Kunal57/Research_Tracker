@@ -12,8 +12,9 @@
 		<% current_uri = request.env['PATH_INFO'] %>
 		<% unless current_uri == root_path %>
 			<%= render "shared/navbar" %>
-		<% end %> 
+		<% end %>
 	</div>
+  <center><p id='errors'><%= flash[:access] %></p></center>
 	<div id="page-wrapper">
 		<%= yield %>
 	</div>

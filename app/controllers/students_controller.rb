@@ -17,8 +17,7 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
     @hours = @student.total_hours_worked
-    @student_unique_projects = unique_projects(@student)
-   
+    @student_unique_projects = @student.unique_projects
   end
 
   private
@@ -26,16 +25,17 @@ class StudentsController < ApplicationController
     params.require(:student).permit(:name, :email, :password)
   end
 
-  def unique_projects(student)
-    unique_records = Record.where(hours_worked: 0)
-    student_unique_records = unique_records.where(student_id: student.id)
-    if student_unique_records.length > 0 
-      student_unique_projects = []
-      student_unique_records.each do |unique_project|
-        project = Project.find(unique_project.project_id)
-        student_unique_projects << project
-      end
-    end
-    student_unique_projects
-  end
+  # def unique_projects
+  #   unique_records = Record.where(hours_worked: 0)
+  #   student_unique_records = unique_records.where(student_id: student.id)
+  #   if student_unique_records.length > 0 
+  #     student_unique_projects = []
+  #     student_unique_records.each do |unique_project|
+  #       project = Project.find(unique_project.project_id)
+  #       student_unique_projects << project
+  #     end
+  #   end
+  #   student_unique_projects
+  # end
+  # self.records.distanct
 end

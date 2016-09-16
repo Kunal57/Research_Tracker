@@ -1,12 +1,20 @@
 <h1><%= @project.title %></h1>
 
+
+
 <% if is_professor? %>
 	<h3><%= @project.remaining_time %> hours remaining</h3>
+	<% if current_user.id == @project.professor_id && @project.status == "active" %>
+		<%= button_to "Mark As Completed", complete_project_path(@project), method: :put %>
+	<% end %>
 	<% if @project.remaining_time < 0 %>
 	<div id="errors">
 		<h4>over budget</h4>
 	</div>
 	<% end %>
+<% elsif current_user.id == @project.professor_id && @project.status == "pending" %>
+			<p><%= link_to "Edit", edit_project_path(@project) %> - <%= link_to 'Delete',  @project,  method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<% end %>
 <% elsif is_student? %>
 	<h3><%= @student_total_hours %> hours worked on this project</h3>
 <% end %>
@@ -16,9 +24,9 @@
 <p><%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
-
 <% if is_student? %>
 <h2>Track your Progress</h2>
+<center><p id='errors'><%= flash[:notice] %></p></center>
 	<%= form_for @record , html: {class: "record"} do |f| %>
 	  <%= f.hidden_field :project_id, value: @project.id %>
 	  <%= f.label :hours_worked %>
@@ -30,7 +38,6 @@
 <% end %>
 
 <h2>Recent Student Logs</h2>
-<%= render(partial: '/shared/error_messages', locals: { obj: @record }) %>
 
 <% @project.records.each do |record| %>
 <div class=records>
@@ -42,6 +49,4 @@
 </div>
 <% end %>
 
-<% if @project.status == "pending" %>
-			<p><%= link_to "Edit", edit_project_path(@project) %> - <%= link_to 'Delete',  @project,  method: :delete, data: { confirm: 'Are you sure?' } %></p>
-<% end %>
+
