@@ -23,7 +23,7 @@
 <p><%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
-<% if is_student? %>
+<% if @project.current? && is_student? %>
 <h2>Track your Progress</h2>
 <center><p id='errors'><%= flash[:notice] %></p></center>
 	<%= form_for @record , html: {class: "record"} do |f| %>
@@ -44,7 +44,7 @@
 	<%= record.observations %><br>
 	<% if is_professor? %>
 		<%= record.hours_worked%> hours worked<br><br>
-	<% end %> 
+	<% end %>
 </div>
 <% end %>
 
