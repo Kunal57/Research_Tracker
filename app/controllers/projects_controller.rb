@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
 
-
 	def index
     if logged_in?
 		  @projects = Project.all
@@ -49,7 +48,9 @@ class ProjectsController < ApplicationController
 
   def create
   	if is_professor?
-	  	@project = Project.new(title: params[:project][:title], hypothesis: params[:project][:hypothesis], summary: params[:project][:summary], time_budget: params[:project][:time_budget], professor_id: current_user.id)
+  		restricted_params = restrict(params)
+	  	@project = Project.new(restricted_params)
+	  	@project.professor_id = current_user.id
 	  	if @project.save
 	  		# Create a record for each new array of students.
 	  		params[:students][:ids].each do |student_id, checked|
@@ -95,6 +96,12 @@ class ProjectsController < ApplicationController
         redirect_to @projects
       end
     end
+  end
+
+  private
+
+  def restrict(params)
+  	params.require(:project).permit(:title, :hypothesis, :summary, :time_budget)
   end
 
 end
