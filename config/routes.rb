@@ -12,13 +12,12 @@ Rails.application.routes.draw do
   resources :professors, only: [:show, :new, :create]
   resources :students, only: [:show, :new, :create]
 
-
   get '/admin/secr1t', to: 'professors#secr1t'
 
   put '/admin/professors/:prof_id', to: 'professors#approve'
-
   put '/admin/projects/:project_id', to: 'projects#admin'
 
+  put '/projects/:id/complete', to: 'projects#complete'
 
   resources :projects, only: [:new, :index, :create, :show]
   resources :records, only: [:new, :create]

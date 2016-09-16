@@ -65,6 +65,12 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def complete
+  	project = Project.find(params[:id])
+  	project.status = "completed"
+  	redirect_to project
+  end
+
   private
 
   def restrict(params)
