@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
 		@record = Record.new
 		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
-    if @project.authorized_viewer?
+    if @project.authorized_viewer?(current_user)
   		if @student
   			@student_total_hours = @student.hours_per_project(@project.id)
   		end
@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
     end
 	end
@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
   	end
   end
@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
     if request.env["HTTP_REFERER"].present?
       redirect_to :back
     else
-      redirect_to @projects
+      redirect_to projects_path
     end
 	 end
   end
@@ -93,7 +93,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
     end
   end

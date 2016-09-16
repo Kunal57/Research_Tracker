@@ -4,10 +4,10 @@
       <% if !current_page?(projects_path) %>
         <%= link_to "Projects Page", projects_path, class: 'nav_link' %>
       <% end %>
-      <% if is_student? 
+      <% if is_student?
         user_type = "Student"
       else
-        user_type = "Professor" 
+        user_type = "Professor"
       end %>
     <% if !current_page?(current_user) %>
       <%= link_to "#{user_type} Profile", current_user, class: 'nav_link' %>

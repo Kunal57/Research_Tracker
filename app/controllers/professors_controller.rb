@@ -12,7 +12,7 @@ class ProfessorsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
     end
   end
@@ -60,7 +60,7 @@ class ProfessorsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to @projects
+        redirect_to projects_path
       end
     end
   end
