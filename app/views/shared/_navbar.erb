@@ -9,8 +9,10 @@
       else
         user_type = "Professor"
       end %>
-    <% if !current_page?(current_user) %>
+    <% if !current_page?(current_user) && !is_admin? %>
       <%= link_to "#{user_type} Profile", current_user, class: 'nav_link' %>
+    <% elsif !current_page?(current_user) && is_admin? %>
+      <%= link_to "Admin Dashboard", '/admin/secr1t', class: 'nav_link' %>
     <% end %>
     <%= link_to "Logout", logout_path, method: "delete", class: 'nav_link' %>
     <% else %>
