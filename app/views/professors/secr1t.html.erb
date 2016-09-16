@@ -1,6 +1,6 @@
 <h1><%= @admin.name %></h1>
 
-<% if @pending_profs %>
+<% if @pending_profs.length > 0 %>
 	<h3>Professors waiting for Account Approval</h3>
 	<% @pending_profs.each do |prof| %>
 	<div class="records">
@@ -12,7 +12,7 @@
 	<% end %>
 <% end %>
 
-<% if @pending_projects %>
+<% if @pending_projects.length > 0 %>
 	<h3>Projects waiting for Approval</h3>
 	<% @pending_projects.each do |proj| %>
 		<div class="records">
