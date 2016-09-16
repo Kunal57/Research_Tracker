@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
       if request.env["HTTP_REFERER"].present?
         redirect_to :back
       else
-        redirect_to root
+        redirect_to root_path
       end
     end
 	end
@@ -17,8 +17,8 @@ class ProjectsController < ApplicationController
 		@record = Record.new
 		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
-    @project_logs = @project.records.where.not(hours_worked: 0)
-    if @project.authorized_viewer?(current_user)
+    if logged_in? && @project.authorized_viewer?(current_user)
+      @project_logs = @project.records.where.not(hours_worked: 0)
   		if @student
   			@student_total_hours = @student.hours_per_project(@project.id)
   		end
@@ -104,10 +104,6 @@ class ProjectsController < ApplicationController
 	  		params[:students][:ids].each do |student_id, checked|
 	  			if checked == "1"
 	  				@record = Record.new(project_id: @project.id, student_id: student_id)
-	  				if !@record.save
-              @students = Student.all
-	  					render 'new'
-	  				end
 	  			end
 	  		end
 	  	redirect_to @project
