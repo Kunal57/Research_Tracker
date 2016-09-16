@@ -56,17 +56,17 @@ class ProjectsController < ApplicationController
 	  		params[:students][:ids].each do |student_id, checked|
 	  			if checked == "1"
 	  				@record = Record.new(project_id: @project.id, student_id: student_id)
-	  				if !@record.save
-              @students = Student.all
-	  					render 'new'
-	  				end
+	  				# if !@record.save
+       #  				# @students = Student.all
+	  				# 	# render 'new'
+	  				# end
 	  			end
 	  		end
 	  		# new_report = Report.new()
 	  		redirect_to @project
 	  	else
 	  		#display the error messages.
-        @students = Student.all
+        	@students = Student.all
 	  		render 'new'
 	  	end
 	 else
