@@ -17,6 +17,9 @@ class ProjectsController < ApplicationController
 		@record = Record.new
 		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
+		@students = Student.all
+		@records = @project.records.where.not(hours_worked: 0)
+
     if logged_in? && @project.authorized_viewer?(current_user)
       @project_logs = @project.records.where.not(hours_worked: 0)
   		if @student
@@ -155,7 +158,23 @@ class ProjectsController < ApplicationController
   	redirect_to project
   end
 
+  def team_update
+  	@project = Project.find(params[:project_id])
+
+  	zero_records = @project.records.where(hours_worked: 0)
+  	zero_records.destroy_all
+
+  	team_update_params["student_ids"].each do |id|
+  		Record.create(student_id: id, project_id: @project.id)
+  	end
+  	
+  	redirect_to @project
+  end
+  
   private
+  def team_update_params
+  	params.require(:project).permit(:student_ids => [])
+  end
 
   def restrict(params)
   	params.require(:project).permit(:title, :hypothesis, :summary, :time_budget)

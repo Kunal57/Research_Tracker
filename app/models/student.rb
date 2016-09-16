@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   has_many :records
   has_many :projects, through: :records
+  # belongs_to :project, inverse_of: :assigned_students
 
   validates :name, :email, { presence: true }
   validates :email, { uniqueness: true }
@@ -25,7 +26,9 @@ class Student < ActiveRecord::Base
   end
 
   def working_on(project)
-    project.students.include?(self)
+    zero_records = project.records.where(hours_worked: 0)
+
+    zero_records.where(student_id: self.id).any?
   end
 
   def unique_projects
