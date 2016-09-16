@@ -57,8 +57,8 @@ class ProjectsController < ApplicationController
 	  			if checked == "1"
 	  				@record = Record.new(project_id: @project.id, student_id: student_id)
 	  				# if !@record.save
-       #  				# @students = Student.all
-	  				# 	# render 'new'
+	       				# @students = Student.all
+		  				# render 'new'
 	  				# end
 	  			end
 	  		end
