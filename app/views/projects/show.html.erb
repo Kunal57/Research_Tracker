@@ -16,13 +16,18 @@
 <p><%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
+<h2>Recent Student Logs</h2>
+
 <%= render(partial: '/shared/error_messages', locals: { obj: @record }) %>
+
 <% @project.records.each do |record| %>
+<div class=records>
 	<%= record.student.name%><br>
 	<%= record.observations %><br>
 	<% if is_professor? %>
 		<%= record.hours_worked%> hours worked<br><br>
 	<% end %> 
+</div>
 <% end %>
 
 <% if is_student? %>
