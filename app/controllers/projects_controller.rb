@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
 	  		redirect_to @project
 	  	else
 	  		#display the error messages.
-        @students = Student.all
+        	@students = Student.all
 	  		render 'new'
 	  	end
 	 else
