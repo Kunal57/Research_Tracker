@@ -34,7 +34,7 @@ Project.create(title: "Weird Science", hypothesis: "cool shit will happen", summ
 end
 
 Professor.all.each do |professor|
-    professor.projects.create!(professor_id: professor.id,
+    Project.create!(professor_id: professor.id,
                           title: Faker::Hipster.sentence,
                           hypothesis: Faker::Lorem.sentence,
                           summary: Faker::Lorem.paragraph(20),
@@ -49,14 +49,14 @@ end
 end
 
 Student.all.each do |student|
-  student.records.create!(student_id: student.id,
+  Record.create!(student_id: student.id,
                           project_id: rand(1..10), 
                           hours_worked: 0)
 end
 
 Student.all.each do |student|
   rand(1..10).times do
-    student.records.create!(student_id: student.id,
+    Record.create!(student_id: student.id,
                           project_id: rand(1..10), 
                           hours_worked: rand(10..50),
                           observations: Faker::Lorem.paragraph(2, true))
