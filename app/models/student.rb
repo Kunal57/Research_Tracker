@@ -27,4 +27,8 @@ class Student < ActiveRecord::Base
   def working_on(project)
     project.students.include?(self)
   end
+
+  def unique_projects
+    self.projects.distinct
+  end 
 end

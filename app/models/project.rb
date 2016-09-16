@@ -30,6 +30,8 @@ class Project < ActiveRecord::Base
       true
     elsif self.professor.id == user.id
       true
+    elsif self.complete?
+      true
     else
       false
     end
