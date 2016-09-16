@@ -70,6 +70,7 @@ class ProjectsController < ApplicationController
   	
   	@project.update(team_update_params)
   	
+  	redirect_to @project
   end
 
   private
