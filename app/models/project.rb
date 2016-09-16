@@ -24,5 +24,4 @@ class Project < ActiveRecord::Base
   	end
   	self.time_budget - total_worked
   end
-
 end

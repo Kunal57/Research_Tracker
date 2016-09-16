@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 		@record = Record.new
 		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
+		@students = Student.all
 		if @student
 			@student_total_hours = @student.hours_per_project(@project.id)
 		end
@@ -45,9 +46,9 @@ class ProjectsController < ApplicationController
         @students = Student.all
 	  		render 'new'
 	  	end
-	else
-		redirect_to "/"
-	end
+		else
+			redirect_to "/"
+		end
   end
 
   def admin
@@ -64,4 +65,15 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def update
+  	@project = Project.find(params[:id])
+  	
+  	@project.update(team_update_params)
+  	
+  end
+
+  private
+  def team_update_params
+  	params.require(:project).permit(:student_ids => [])
+  end
 end
