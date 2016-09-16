@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20160914205104) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.integer  "student_id",               null: false
-    t.integer  "project_id",               null: false
-    t.integer  "hours_worked", default: 0
+    t.integer  "student_id",   null: false
+    t.integer  "project_id",   null: false
+    t.integer  "hours_worked"
     t.text     "observations"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "students", force: :cascade do |t|
