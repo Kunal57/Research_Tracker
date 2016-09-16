@@ -25,7 +25,7 @@
 	<%= record.observations %><br>
 	<% if is_professor? %>
 		<%= record.hours_worked%> hours worked<br><br>
-	<% end %> 
+	<% end %>
 <% end %>
 
 <% if is_student? %>
@@ -37,4 +37,8 @@
 	  <%= f.text_area :observations, cols: 30, rows: 15%><br>
 	  <%= f.submit %>
 	<% end %>
+<% end %>
+
+<% if @project.status == "pending" %>
+			<p><%= link_to "Edit", edit_project_path(@project) %> - <%= link_to 'Delete',  @project,  method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>

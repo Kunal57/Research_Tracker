@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   put '/projects/:id/complete', to: 'projects#complete', as: :complete_project
 
-  resources :projects, only: [:new, :index, :create, :show]
+  resources :projects
   resources :records, only: [:new, :create]
 
 
