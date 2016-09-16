@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
 		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
     if logged_in? && @project.authorized_viewer?(current_user)
+      @project_logs = @project.records.where.not(hours_worked: 0)
   		if @student
   			@student_total_hours = @student.hours_per_project(@project.id)
   		end
