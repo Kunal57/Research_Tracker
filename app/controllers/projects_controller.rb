@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
 		@student = Student.find_by(id: session[:student_id])
 		@project = Project.find(params[:id])
 		@students = Student.all
+		@records = @project.records.where.not(hours_worked: 0)
+
 		if @student
 			@student_total_hours = @student.hours_per_project(@project.id)
 		end
@@ -65,10 +67,19 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def update
-  	@project = Project.find(params[:id])
+  def team_update
+  	@project = Project.find(params[:project_id])
   	
-  	@project.update(team_update_params)
+  	# @project.update(team_update_params)
+  	
+  	# byebug
+
+  	zero_records = @project.records.where(hours_worked: 0)
+  	zero_records.destroy_all
+
+  	team_update_params["student_ids"].each do |id|
+  		Record.create(student_id: id, project_id: @project.id)
+  	end
   	
   	redirect_to @project
   end

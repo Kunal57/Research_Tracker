@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :professor
   has_many :records
   has_many :students, through: :records
+  # has_many :assigned_students, class_name: :student
 
   validates_presence_of :title, :hypothesis, :summary, :time_budget
 
@@ -24,4 +25,8 @@ class Project < ActiveRecord::Base
   	end
   	self.time_budget - total_worked
   end
+
+  # def distinct_students
+  #   self.students.distinct
+  # end
 end

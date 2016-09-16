@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   has_many :records
   has_many :projects, through: :records
+  # belongs_to :project, inverse_of: :assigned_students
 
   validates :name, :email, { presence: true }
   validates :email, { uniqueness: true }

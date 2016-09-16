@@ -16,7 +16,7 @@
 <p>Summary:  <%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
 
-<% @project.records.each do |record| %>
+<% @records.each do |record| %>
 	<%= record.student.name%><br>
 	<%= record.observations %><br>
 	<% if is_professor? %>
@@ -27,9 +27,8 @@
 <% if is_professor? %>
 	<% if @project.current? #if this is an active project %>
 	<p>Available Students:</p>
-		<%= form_for @project do |f| %>
+		<%= form_for @project, url: team_update_path(@project), method: "put" do |f| %>
 			<% @students.each do |student| %>
-				<!-- <li><%= check_box(:records, student.id, {checked: student.working_on(@project)}, true, false) %> <%= f.label student.name %></li> -->
 				<li><%= check_box(:project, :student_ids, {multiple: true, checked: student.working_on(@project)}, student.id, nil) %> <%= f.label student.name %></li>
 			<% end %>
 			<%= f.submit %>
