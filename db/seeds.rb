@@ -63,4 +63,4 @@ Student.all.each do |student|
   end
 end
 
-Professor.find(1).projects.delete_all
+Professor.find(1).projects.destroy_all
