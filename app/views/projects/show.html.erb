@@ -19,7 +19,7 @@
 
 <% if is_student? %>
 <h2>Track your Progress</h2>
-	<%= form_for @record , html: {class: "form-group"} do |f| %>
+	<%= form_for @record , html: {class: "record"} do |f| %>
 	  <%= f.hidden_field :project_id, value: @project.id %>
 	  <%= f.label :hours_worked %>
 	  <%= f.number_field :hours_worked %><br>
