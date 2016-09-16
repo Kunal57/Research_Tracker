@@ -20,10 +20,14 @@ Rails.application.routes.draw do
   put '/projects/:id/complete', to: 'projects#complete', as: :complete_project
 
   resources :projects
+
   resources :records, only: [:new, :create]
 
 
+  put '/projects/:project_id/team_update', to: 'projects#team_update', as: :team_update
+
   get '*unmatched_route', to: 'application#raise_not_found'
+
 
 
 

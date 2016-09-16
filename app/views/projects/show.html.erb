@@ -18,10 +18,22 @@
 	<h3><%= @student_total_hours %> hours worked on this project</h3>
 <% end %>
 
-<h3><%= @project.hypothesis %></h3>
+<h3>Hypothesis:  <%= @project.hypothesis %></h3>
 
-<p><%= @project.summary %></p>
+<p>Summary:  <%= @project.summary %></p>
 <p>Status: <%= @project.status %></p>
+
+<% if is_professor? %>
+	<% if @project.current? #if this is an active project %>
+	<p>Available Students:</p>
+		<%= form_for @project, url: team_update_path(@project), method: "put" do |f| %>
+			<% @students.each do |student| %>
+				<li><%= check_box(:project, :student_ids, {multiple: true, checked: student.working_on(@project)}, student.id, nil) %> <%= f.label student.name %></li>
+			<% end %>
+			<%= f.submit %>
+		<% end %>
+	<% end %>
+<% end %>
 
 <% if @project.current? && is_student? %>
 <h2>Track your Progress</h2>
@@ -31,7 +43,7 @@
 	  <%= f.label :hours_worked %>
 	  <%= f.number_field :hours_worked %><br>
 	  <%= f.label :observations %>
-	  <%= f.text_area :observations, cols: 30, rows: 15%><br>
+	  <%= f.text_area :observations, cols: 30, rows: 15 %><br>
 	  <%= f.submit %>
 	<% end %>
 <% end %>
@@ -49,5 +61,4 @@
 	</div>
 	<% end %>
 </div>
-
 
