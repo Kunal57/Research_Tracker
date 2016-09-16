@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :records, only: [:new, :create]
 
 
-
+  get '*unmatched_route', to: 'application#raise_not_found'
 
 
 
