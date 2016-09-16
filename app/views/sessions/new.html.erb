@@ -4,7 +4,7 @@
 <p>Please login or register to continue</p>
 
 <p id='errors'><%= flash[:notice] %></p>
-
+</center>
 <%= form_tag('/login', class: "form-group") do %>
 <%= label_tag(:email, "Email:") %>
 <%= text_field_tag(:email) %>
@@ -12,7 +12,7 @@
 <%= password_field_tag :password, nil, class: 'form-group password'%>
 <%= submit_tag("Login") %>
 <% end %>
-
+<center>
 <%= link_to "Register as a Student", new_student_path %>
 <%= link_to "Register as a Professor", new_professor_path %>
 </center>
